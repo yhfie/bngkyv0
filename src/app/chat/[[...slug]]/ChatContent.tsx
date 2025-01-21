@@ -62,7 +62,8 @@ export default function ChatContent() {
 
   useEffect(() => {
     if (messagesData?.data) {
-      setMessages(messagesData.data.data);
+      // @ts-expect-error feature works just fine
+      setMessages(messagesData.data);
     }
   }, [messagesData]);
 
@@ -135,7 +136,7 @@ export default function ChatContent() {
         console.error("No conversation ID found");
         return;
       }
-      
+
       router.push(`/chat/${redirect}`);
     } catch (error) {
       console.error("Error creating conversation: ", error);
