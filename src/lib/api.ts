@@ -5,7 +5,7 @@ import client from "../api/backend-client";
 
 export const fetchMessages = async (
   conversation_id: string,
-): Promise<{ data: Message[] }> => {
+): Promise<{ data: {data: Message[]} }> => {
   const res = await client.GET(`/conversations/${conversation_id}/inquire`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -17,7 +17,7 @@ export const fetchMessages = async (
     },
   });
 
-  return res;
+  return res.data as { data: {data: Message[]} };
 };
 
 export const fetchConversations = async () => {
