@@ -37,10 +37,11 @@ export default function SignInPage() {
         const result = await response.json();
         const token = result.token;
         localStorage.setItem("token", token);
+        // alert(response.statusText);
         router.push("/chat/new");
       } else {
-        // alert("wrong pass");
-        console.log(response);
+        // alert(response.statusText);
+        // console.log(response);
         setError("Username atau password salah");
       }
 

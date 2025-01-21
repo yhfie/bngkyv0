@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       body: { username, password },
     });
 
-    console.log("// result from api/login: ", result);
+    // console.log("// result from api/login: ", result);
 
     if (!result.error) {
       const token = result.data.data.token;
