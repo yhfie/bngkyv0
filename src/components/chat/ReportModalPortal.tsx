@@ -28,6 +28,7 @@ const ReportModalPortal: FC<Props> = ({ reported, id }) => {
     setIsReportDisabled(true);
 
     try {
+      // @ts-expect-error already correct API scheme as in the swagger
       const response = await client.PUT(`/messages/${id}/feedback`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -43,7 +44,7 @@ const ReportModalPortal: FC<Props> = ({ reported, id }) => {
         },
       });
 
-      if (response.data.code === 200) {
+      if (response.data?.code === 200) {
         setIsReported(true);
         setShowSuccessMessage(true);
         setTimeout(() => {
@@ -105,8 +106,7 @@ const ReportModalPortal: FC<Props> = ({ reported, id }) => {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      const feedback =
-                        event.currentTarget.elements["report-message"].value;
+                      const feedback = (event.currentTarget as HTMLFormElement).namedItem["report-message"].value;
                       handleSendFeedback(feedback);
                     }}
                   >
