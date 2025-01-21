@@ -75,6 +75,7 @@ export default function ChatContent() {
     }
 
     try {
+      // @ts-expect-error already correct API scheme as in the swagger
       const result = await client.POST(`/conversations/${chatId}/inquire`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -128,7 +129,13 @@ export default function ChatContent() {
         },
       });
       // console.log(result.data.data[0].conversation_id)
-      const redirect = result?.data?.data[0].conversation_id;
+      const redirect = result?.data?.data[0]?.conversation_id;
+
+      if (!redirect) {
+        console.error("No conversation ID found");
+        return;
+      }
+      
       router.push(`/chat/${redirect}`);
     } catch (error) {
       console.error("Error creating conversation: ", error);
