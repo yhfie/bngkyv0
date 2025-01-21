@@ -9,8 +9,9 @@ import ChatPromptInput from "@/components/chat/ChatPromptInput";
 import Head from "next/head";
 import { useQuery } from "@tanstack/react-query";
 import client from "@/api/backend-client";
-import { fetchConversations, fetchMessages } from "@/app/api/messages/route";
+// import { fetchConversations, fetchMessages } from "@/app/api/messages/route";
 import { useRouter } from "next/navigation";
+import { fetchConversations, fetchMessages } from "@/lib/api";
 
 type PageParams = {
   slug: string[];

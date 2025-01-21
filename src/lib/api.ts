@@ -1,7 +1,7 @@
 "use client";
 
 import { Message } from "@/components/chat/types";
-import client from "../../../api/backend-client";
+import client from "../api/backend-client";
 
 export const fetchMessages = async (
   conversation_id: string,
