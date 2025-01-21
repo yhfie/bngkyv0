@@ -62,7 +62,9 @@ export default function SignInPage() {
           accept: "application/json",
         },
       });
+      // @ts-expect-error temporary for demo
       if (response.data.url) {
+        // @ts-expect-error temporary for demo
         window.location.href = response.data.url;
       } else {
         setError("Error saat melakukan login dengan Google");
