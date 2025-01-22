@@ -4,6 +4,12 @@ import { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
+  // Skip middleware for specific paths
+  const excludedPaths = ["/sign-in", "/dashboard"];
+  if (excludedPaths.some((path) => request.nextUrl.pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
+
   function parseJwt(token: string) {
     if (!token) {
       throw new Error("Token is undefined");

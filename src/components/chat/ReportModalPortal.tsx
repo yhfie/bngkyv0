@@ -106,7 +106,8 @@ const ReportModalPortal: FC<Props> = ({ reported, id }) => {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      const feedback = (event.currentTarget as HTMLFormElement).namedItem["report-message"].value;
+                      // @ts-expect-error temporary for demo
+                      const feedback = event.currentTarget.elements["report-message"].value;
                       handleSendFeedback(feedback);
                     }}
                   >
